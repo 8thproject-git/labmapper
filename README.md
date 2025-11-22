@@ -25,17 +25,17 @@
 
 ## Getting Started
 
-1.  **Open the App:** Simply open `frontend/index.html` in any modern web browser. No backend server or installation is required.
+1.  **Open the App:** Simply open `./index.html` in any modern web browser. No backend server or installation is required.
 2.  **Add Inventory:** Use the "Add" button (Floating Action Button) to populate your Locations, Hardware, and Services.
 3.  **Define Connections:** Link your devices port-to-port in the Connections view.
 4.  **Generate Diagram:** Click "Drawio XML" in the sidebar to download your architecture diagram.
 
 ## Project Structure
 
--   `frontend/index.html`: The main application entry point.
--   `frontend/static/js/app.js`: Core logic for state management, UI rendering, and Draw.io XML generation.
--   `frontend/static/css/style.css`: Styling and theming.
--   `example_hardware.json`: A sample configuration file to get you started.
+-   `./index.html`: The main application entry point.
+-   `./static/js/app.js`: Core logic for state management, UI rendering, and Draw.io XML generation.
+-   `./static/css/style.css`: Styling and theming.
+-   `example_configuration.json`: A sample configuration file to get you started.
 
 ## Technologies
 
