@@ -1135,6 +1135,22 @@ function saveConfiguration() {
     a.href = url; a.download = `homelab_config_${Date.now()}.json`;
     a.click();
 }
+
+function clearData() {
+    if(confirm("Are you sure you want to clear ALL data? This action cannot be undone.")) {
+        localStorage.removeItem(AUTO_SAVE_KEY);
+        locations.length = 0;
+        hardware.length = 0;
+        services.length = 0;
+        connections.length = 0;
+        renderLocationsList();
+        renderHardwareList();
+        renderServicesList();
+        renderConnectionsList();
+        showView('overview');
+    }
+}
+
 function loadConfiguration(e) {
     const reader = new FileReader();
     reader.onload = (ev) => {
@@ -1264,6 +1280,7 @@ function getServiceIcon(name) {
         "openhab": "openhab",
         "domoticz": "domoticz",
         "homebridge": "homebridge",
+        "zigbee": "zigbee2mqtt",
         "zigbee2mqtt": "zigbee2mqtt",
         "z2m": "zigbee2mqtt",
         "nodered": "node-red",
