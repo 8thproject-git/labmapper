@@ -1,6 +1,8 @@
 # LabMapper
 
-**LabMapper** is a modern, standalone web application designed to document, visualize, and diagram your homelab infrastructure. It allows you to track and generates professional network diagrams of your hardware, locations, services, and network connections.
+**LabMapper** is a modern, standalone web application designed to document, visualize, and diagram your homelab infrastructure. It allows you to track and generate network diagrams of your hardware, locations, services, and network connections.
+
+[LabMapper](https://8thproject-git.github.io/labmapper/))
 
 ## Features
 
