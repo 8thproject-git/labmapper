@@ -1178,7 +1178,92 @@ document.addEventListener('DOMContentLoaded', () => {
     renderServicesList();
     renderConnectionsList();
     showView('overview');
+    
+    initDragAndDrop();
 });
+
+function initDragAndDrop() {
+    const arrayMove = (arr, oldIndex, newIndex) => {
+        if (newIndex >= arr.length) {
+            let k = newIndex - arr.length + 1;
+            while (k--) arr.push(undefined);
+        }
+        arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+    };
+
+    // Locations
+    const locList = document.getElementById('locations-list');
+    if(locList) {
+        Sortable.create(locList, {
+            animation: 150,
+            handle: '.glass-card',
+            onEnd: function (evt) {
+                arrayMove(locations, evt.oldIndex, evt.newIndex);
+                saveToLocalStorage();
+            }
+        });
+    }
+
+    // Hardware
+    const hwList = document.getElementById('hardware-list');
+    if(hwList) {
+        const hwSortable = Sortable.create(hwList, {
+            animation: 150,
+            handle: '.glass-card',
+            onEnd: function (evt) {
+                if(document.getElementById('hardware-type-filter').value === 'all') {
+                    arrayMove(hardware, evt.oldIndex, evt.newIndex);
+                    saveToLocalStorage();
+                }
+            }
+        });
+        
+        // Hook into filter function to disable sorting when filtered
+        const originalFilterHardware = window.filterHardware;
+        window.filterHardware = function() {
+            originalFilterHardware();
+            const isAll = document.getElementById('hardware-type-filter').value === 'all';
+            hwSortable.option("disabled", !isAll);
+            hwList.classList.toggle('sortable-disabled', !isAll);
+        };
+    }
+
+    // Services
+    const svcList = document.getElementById('services-list');
+    if(svcList) {
+        const svcSortable = Sortable.create(svcList, {
+            animation: 150,
+            handle: '.glass-card',
+            onEnd: function (evt) {
+                if(document.getElementById('service-type-filter').value === 'all') {
+                    arrayMove(services, evt.oldIndex, evt.newIndex);
+                    saveToLocalStorage();
+                }
+            }
+        });
+        
+        const originalFilterServices = window.filterServices;
+        window.filterServices = function() {
+            originalFilterServices();
+            const isAll = document.getElementById('service-type-filter').value === 'all';
+            svcSortable.option("disabled", !isAll);
+            svcList.classList.toggle('sortable-disabled', !isAll);
+        };
+    }
+
+    // Connections
+    const connList = document.getElementById('connections-list');
+    if(connList) {
+        Sortable.create(connList, {
+            animation: 150,
+            handle: '.glass-card',
+            onEnd: function (evt) {
+                arrayMove(connections, evt.oldIndex, evt.newIndex);
+                saveToLocalStorage();
+            }
+        });
+    }
+}
 
 // --- Draw.io Export Logic ---
 

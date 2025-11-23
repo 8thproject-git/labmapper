@@ -134,6 +134,15 @@ body {
     border-radius: 16px;
     padding: 1.5rem;
     transition: all 0.2s ease;
+    cursor: grab;
+}
+
+.glass-card:active {
+    cursor: grabbing;
+}
+
+.sortable-disabled .glass-card {
+    cursor: default;
 }
 
 .hw-card {
